@@ -94,23 +94,96 @@ def get_m3u8_url(themes_id):
     return m3u8_urls,names
 
 
+def chooce():
+    global semester
+    subject,publisher = '',''
+    subjects = {
+        '小学数学':'1',
+        '初中数学':'1',
+        '高中数学':'1',
+        '初中物理':'2',
+        '初中化学':'4',
+    }
+    publishers = {
+        '人教版':'1',
+        '北师大版':'2',
+        '华师大版':'3',
+        '湘教版':'4',
+        '冀教版':'5',
+        '苏科版':'6',
+        '鲁教版':'7',
+        '沪科版':'8',
+        '沪教版':'9',
+        '青岛版':'10',
+        '浙教版': '11',
+        '北京课改版': '12',
+        '通用版': '13',
+        '鲁科版': '14',
+        '粤沪版': '16',
+        '教科版': '17',
+        '人教A': '18',
+        '人教B':'19',
+        '湘教旧版':'20',
+        '人教新课标A':'21',
+        '人教新课标B':'24',
+    }
+    semesters = {
+        '三年级上册':'5',
+        '三年级下册':'6',
+        '四年级上册':'7',
+        '四年级下册':'8',
+        '五年级上册':'9',
+        '五年级下册':'10',
+        '六年级上册':'11',
+        '六年级下册':'12',
+        '七年级上册':'13',
+        '七年级下册':'14',
+        '八年级上册':'15',
+        '八年级下册':'16',
+        '九年级上册':'17',
+        '九年级下册':'18',
+        '中考一轮':'19',
+        '中考二轮':'20',
+    }
+    for i in range(len(list(subjects.keys()))):
+        print(str(i)+'.'+list(subjects.keys())[i]+'  ',end='')
+    print('\n')
+    while True:
+        try:
+            choice = int(input('请输入要下载的学科的序号:'))
+            subject = subjects[list(subjects.keys())[choice]]
+            break
+        except Exception or ValueError:
+            continue
+    for i in range(len(list(publishers.keys()))):print(str(i)+'.'+list(publishers.keys())[i]+'  ',end='\n')
+    while True:
+        try:
+            choice = int(input('请输入版本的序号:'))
+            publisher = publishers[list(publishers.keys())[choice]]
+            break
+        except Exception or ValueError:
+            continue
+    for i in range(len(list(semesters.keys()))):print(str(i)+'.'+list(semesters.keys())[i]+'  ',end='\n')
+    while True:
+        try:
+            choice = int(input('请输入年级的序号:'))
+            semester = int(semesters[list(semesters.keys())[choice]])
+            break
+        except Exception or ValueError:
+            continue
+    if semester <= 12:
+        stage = '1'
+    elif 18 >= semester > 12:
+        stage = '2'
+    else:
+        stage = '3'
+    url = 'https://school-api.yangcong345.com/course/chapters-with-section/publisher/%s/semester/%s/subject/%s/stage/%s'%(publisher,semester,subject,stage)
+    print(url)
+    return url
+
+
 if __name__ == '__main__':
-    urls = ['https://school-api.yangcong345.com/course/chapters-with-section/publisher/16/semester/17/subject/2/stage/2',
-            'https://school-api.yangcong345.com/course/chapters-with-section/publisher/16/semester/18/subject/2/stage/2',
-            'https://school-api.yangcong345.com/course/chapters-with-section/publisher/1/semester/17/subject/4/stage/2',
-            'https://school-api.yangcong345.com/course/chapters-with-section/publisher/1/semester/44/subject/4/stage/2',
-            'https://school-api.yangcong345.com/course/chapters-with-section/publisher/1/semester/17/subject/1/stage/2',
-            'https://school-api.yangcong345.com/course/chapters-with-section/publisher/1/semester/18/subject/1/stage/2',
-            'https://school-api.yangcong345.com/course/chapters-with-section/publisher/1/semester/33/subject/1/stage/2',
-            'https://school-api.yangcong345.com/course/chapters-with-section/publisher/1/semester/34/subject/1/stage/2',
-            ]
-    print('''
-    1.九上物理  2.九下物理  3.九上化学  4.中考复习化学
-    5.九上数学  6.九下数学  7.中考一轮数学  8.中考二轮数学
-    ''')
-    choose = int(input('请输入要下载的序号：'))
-    global url1
-    url1 = urls[choose-1]
+    url1 = chooce()
     themes_ids = []
     list1 = get_themesid(login('17727171396', 'ABcd1234'))
     [themes_ids.append(i) for i in list1 if i not in themes_ids]
