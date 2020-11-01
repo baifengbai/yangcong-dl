@@ -15,4 +15,4 @@ Github地址:https://github.com/nilaoda/N_m3u8DL-CLI
 这得从洋葱学院网站上的一个越权漏洞(或者说是逻辑漏洞，我也不太确定...偶然发现的)说起
 一句话概括:这个漏洞可以让普通用户，即非vip用户，下载到vip视频
 具体原理如下:
-有亿点点复杂，有空再写吧
+![](https://cdn.jsdelivr.net/gh/ravizhan/css-js/1.svg)
