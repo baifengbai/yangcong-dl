@@ -3,6 +3,13 @@ import json
 import download
 
 
+def getkey(dic,value_list):
+    res = []
+    for value in list(value_list):
+        res.append(list(dic.keys())[list(dic.values()).index(str(value))])
+    return res
+
+
 def login(username,pw):
     data = '{"name":"%s","password":"%s"}' % (username,pw)
     header = {
@@ -95,7 +102,7 @@ def get_m3u8_url(themes_id):
 
 
 def chooce():
-    global semester
+    global semester, choice_sub
     subject,publisher = '',''
     subjects = {
         '小学数学':'1',
@@ -119,6 +126,7 @@ def chooce():
         '北京课改版': '12',
         '通用版': '13',
         '鲁科版': '14',
+        '苏教版': '15',
         '粤沪版': '16',
         '教科版': '17',
         '人教A': '18',
@@ -150,12 +158,17 @@ def chooce():
     print('\n')
     while True:
         try:
-            choice = int(input('请输入要下载的学科的序号:'))
-            subject = subjects[list(subjects.keys())[choice]]
+            choice_sub = int(input('请输入要下载的学科的序号:'))
+            subject = subjects[list(subjects.keys())[choice_sub]]
             break
         except Exception or ValueError:
             continue
-    for i in range(len(list(publishers.keys()))):print(str(i)+'.'+list(publishers.keys())[i]+'  ',end='\n')
+    if list(subjects.keys())[choice_sub] == '小学数学':
+        for i in [1,2,5,6,10]:print(str(i)+'.'+list(publishers.keys())[i-1]+'  ',end='')
+    elif list(subjects.keys())[choice_sub] == '初中数学':
+        for i in range(1,14):print(str(i)+'.'+list(publishers.keys())[i-1]+'  ',end='')
+    elif list(subjects.keys())[choice_sub] == '高中数学':
+        for i in [1,2,4,15,18,19,20,21,24]:print(str(i)+'.'+list(publishers.keys())[i-1]+'  ',end='')
     while True:
         try:
             choice = int(input('请输入版本的序号:'))
@@ -163,6 +176,10 @@ def chooce():
             break
         except Exception or ValueError:
             continue
+    if list(subjects.keys())[choice_sub] == '小学数学':
+        for i in range(1,9): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+    elif list(subjects.keys())[choice_sub] == '初中数学':
+        for i in range(9,17): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
     for i in range(len(list(semesters.keys()))):print(str(i)+'.'+list(semesters.keys())[i]+'  ',end='\n')
     while True:
         try:
@@ -171,6 +188,7 @@ def chooce():
             break
         except Exception or ValueError:
             continue
+    print('正在爬取')
     if semester <= 12:
         stage = '1'
     elif 18 >= semester > 12:
@@ -183,9 +201,15 @@ def chooce():
 
 
 if __name__ == '__main__':
+    print('用户登录(怕就直接回车吧，我要你账号也没啥用...)')
+    username = input('用户名(手机号):')
+    pw = input('密码:')
+    if username == '' or pw == '':
+        username = '17727171396'
+        pw = 'ABcd1234'
     url1 = chooce()
     themes_ids = []
-    list1 = get_themesid(login('17727171396', 'ABcd1234'))
+    list1 = get_themesid(login(username, pw))
     [themes_ids.append(i) for i in list1 if i not in themes_ids]
     m3u8_urls, video_names = [], []
     for i in range(0,len(themes_ids)):
