@@ -150,8 +150,17 @@ def chooce():
         '八年级下册':'16',
         '九年级上册':'17',
         '九年级下册':'18',
-        '中考一轮':'19',
-        '中考二轮':'20',
+        '中考一轮':'33',
+        '中考二轮':'34',
+        '必修一':'19',
+        '必修二': '20',
+        '必修三': '21',
+        '必修四': '22',
+        '必修五': '23',
+        '选修2-1(理科)': '29',
+        '选修2-2(理科)': '36',
+        '选修1-1(文科)':'41',
+        '选修1-2(文科)': '42',
     }
     for i in range(len(list(subjects.keys()))):
         print(str(i)+'.'+list(subjects.keys())[i]+'  ',end='')
@@ -168,10 +177,10 @@ def chooce():
     elif list(subjects.keys())[choice_sub] == '初中数学':
         for i in range(1,14):print(str(i)+'.'+list(publishers.keys())[i-1]+'  ',end='')
     elif list(subjects.keys())[choice_sub] == '高中数学':
-        for i in [1,2,4,15,18,19,20,21,24]:print(str(i)+'.'+list(publishers.keys())[i-1]+'  ',end='')
+        for i in [1,2,4,15,18,19,20,21,22]:print(str(i)+'.'+list(publishers.keys())[i-1]+'  ',end='')
     while True:
         try:
-            choice = int(input('请输入版本的序号:'))
+            choice = int(input('\n请输入版本的序号:'))
             publisher = publishers[list(publishers.keys())[choice]]
             break
         except Exception or ValueError:
@@ -180,12 +189,20 @@ def chooce():
         for i in range(1,9): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
     elif list(subjects.keys())[choice_sub] == '初中数学':
         for i in range(9,17): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
-    for i in range(len(list(semesters.keys()))):print(str(i)+'.'+list(semesters.keys())[i]+'  ',end='\n')
+    elif list(subjects.keys())[choice_sub] == '高中数学':
+        for i in range(17,26): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
     while True:
         try:
-            choice = int(input('请输入年级的序号:'))
-            semester = int(semesters[list(semesters.keys())[choice]])
-            break
+            choice = int(input('\n请输入年级的序号:'))
+            semester = int(semesters[list(semesters.keys())[choice-1]])
+            if list(subjects.keys())[choice_sub] == '小学数学' and choice in range(1, 9):
+                break
+            elif list(subjects.keys())[choice_sub] == '初中数学' and choice in range(9, 17):
+                break
+            elif list(subjects.keys())[choice_sub] == '高中数学' and choice in range(17, 26):
+                break
+            else:
+                continue
         except Exception or ValueError:
             continue
     print('正在爬取')
