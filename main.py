@@ -218,15 +218,28 @@ def chooce():
 
 
 if __name__ == '__main__':
-    print('用户登录(怕就直接回车吧，我要你账号也没啥用...)')
-    username = input('用户名(手机号):')
-    pw = input('密码:')
-    if username == '' or pw == '':
-        username = '17727171396'
-        pw = 'ABcd1234'
+    while True:
+        try:
+            choice1 = int(input('请选择登陆方式：\n1.手动输入authorization   2.账号密码登录\n'))
+            if choice1 in [1,2]:
+                break
+            else:
+                continue
+        except Exception or ValueError:
+            continue
+    if choice1 == 1:
+        authorization = input('authorization:')
+    elif choice1 == 2:
+        print('用户登录(怕就直接回车吧，我要你账号也没啥用...)')
+        username = input('用户名(手机号):')
+        pw = input('密码:')
+        if username == '' or pw == '':
+            username = '17727171396'
+            pw = 'ABcd1234'
+        authorization = login(username, pw)
     url1 = chooce()
     themes_ids = []
-    list1 = get_themesid(login(username, pw))
+    list1 = get_themesid(authorization)
     [themes_ids.append(i) for i in list1 if i not in themes_ids]
     m3u8_urls, video_names = [], []
     for i in range(0,len(themes_ids)):
