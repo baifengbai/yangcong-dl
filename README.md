@@ -1,4 +1,4 @@
-﻿# yangcong-dl
+# yangcong-dl
 洋葱学院视频下载(无视VIP)
 # 关于开源
 本项目于2020年10月17日开源，采用MIT许可证，请自觉遵守。
@@ -11,7 +11,7 @@ Github地址:https://github.com/nilaoda/N_m3u8DL-CLI
 `python main.py`
 或者[直接下载二进制版](https://github.com/ravizhan/yangcong-dl/releases)(不放心的可以自己编译)
 
->注：程序不存在任何后面(不放心的自己看源码)，放心地输你的账号密码，账号密码仅用于模拟网站登录，别无他用....
+>注：程序不存在任何后门(不放心的自己看源码)，放心地输你的账号密码，账号密码仅用于模拟网站登录，别无他用....
 
 >还是不放心的可以直接回车用我的账号登录(反正都是免费账号) or 手动输入`authorization`
 # 原理
@@ -19,3 +19,5 @@ Github地址:https://github.com/nilaoda/N_m3u8DL-CLI
 一句话概括:这个漏洞可以让普通用户，即非vip用户，下载到vip视频
 具体原理如下:
 ![](https://cdn.jsdelivr.net/gh/ravizhan/css-js/1.svg)
+# 法律声明
+本项目仅用于**学术研究**，由于使用本项目及其二进制文件等所产生的任何法律风险**与作者无关**。
