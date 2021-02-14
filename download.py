@@ -29,7 +29,7 @@ def download(urls,names,download_dir):
             '''
             # 使用vbs调用bat,实现bat后台运行
             order = 'N_m3u8DL-CLI_v2.9.5.exe '+urls[i]+' --saveName "'+str(i)+name+'" --enableDelAfterDone --workDir "'+download_dir+'"\nexit'
-            with open('1.bat', 'w', encoding='utf-8') as f:
+            with open('1.bat', 'w') as f:
                 f.write(order)
                 f.close()
             with open('1.vbs', 'w', encoding='utf-8') as f:
