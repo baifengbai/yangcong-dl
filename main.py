@@ -148,7 +148,10 @@ class yc:
             '人教B': '19',
             '湘教旧版': '20',
             '人教新课标A': '21',
+            '青岛版(五·四学制)':'22',
             '人教新课标B': '24',
+            '苏教版(新课标)':'26',
+            '北师大版(新课标)':'27'
         }
         semesters = {
             '三年级上册': '5',
@@ -165,8 +168,11 @@ class yc:
             '八年级下册': '16',
             '九年级上册': '17',
             '九年级下册': '18',
+            '八年级全一册': '31',
+            '九年级全一册': '32',
             '中考一轮': '33',
             '中考二轮': '34',
+            '中考总复习':'44',
             '必修一': '19',
             '必修二': '20',
             '必修三': '21',
@@ -174,57 +180,98 @@ class yc:
             '必修五': '23',
             '选修2-1(理科)': '29',
             '选修2-2(理科)': '36',
+            '选修2-3(理科)': '40',
             '选修1-1(文科)': '41',
             '选修1-2(文科)': '42',
+            '必修上':'25',
+            '必修下':'26',
+            '选修一上册':'28',
+            '选修一下册':'35',
+            '选择性必修第一册':'45',
+            '选择性必修第二册': '46',
+            '选择性必修第三册': '47',
         }
         for i in range(len(list(subjects.keys()))):
             print(str(i) + '.' + list(subjects.keys())[i] + '  ', end='')
-        print('\n')
         while True:
             try:
-                choice_sub = int(input('请输入要下载的学科的序号:'))
+                choice_sub = int(input('\n请输入要下载的学科的序号:'))
                 subject = subjects[list(subjects.keys())[choice_sub]]
                 break
             except Exception or ValueError:
                 continue
         if list(subjects.keys())[choice_sub] == '小学数学':
-            for i in [1, 2, 5, 6, 10]: print(str(i) + '.' + list(publishers.keys())[i - 1] + '  ', end='')
+            for i in [1, 2, 5, 6, 10, 22]: print(str(i) + '.' + list(publishers.keys())[i - 1] + '  ', end='')
         elif list(subjects.keys())[choice_sub] == '初中数学':
             for i in range(1, 14): print(str(i) + '.' + list(publishers.keys())[i - 1] + '  ', end='')
         elif list(subjects.keys())[choice_sub] == '高中数学':
-            for i in [1, 2, 4, 15, 18, 19, 20, 21, 22]: print(str(i) + '.' + list(publishers.keys())[i - 1] + '  ',
-                                                              end='')
+            for i in [1, 2, 4, 15, 18, 19, 20,21,23,24,25]: print(str(i) + '.' + list(publishers.keys())[i - 1] + '  ',end='')
+        elif list(subjects.keys())[choice_sub] == '初中物理':
+            for i in [1,2,6,8,9,11,12,14,16,17]: print(str(i) + '.' + list(publishers.keys())[i - 1] + '  ', end='')
+        elif list(subjects.keys())[choice_sub] == '初中化学':
+            for i in [1,7,9,11]: print(str(i) + '.' + list(publishers.keys())[i - 1] + '  ', end='')
         while True:
             try:
                 choice = int(input('\n请输入版本的序号:'))
-                publisher = publishers[list(publishers.keys())[choice - 1]]
+                publisher = publishers[list(publishers.keys())[choice-1]]
                 break
             except Exception or ValueError:
                 continue
         if list(subjects.keys())[choice_sub] == '小学数学':
             for i in range(1, 9): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
         elif list(subjects.keys())[choice_sub] == '初中数学':
-            for i in range(9, 17): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            for i in [9,10,11,12,13,14,17,18]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
         elif list(subjects.keys())[choice_sub] == '高中数学':
-            for i in range(17, 26): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            if int(publisher) in [1,2,15,18,19,20]:
+                for i in range(17, 27): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            elif int(publisher) == 4:
+                for i in range(27, 31): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            elif int(publisher) == 21:
+                for i in [17,18,31,32]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            elif int(publisher) == 24:
+                for i in [17,18,19,20,31,32,33]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            elif int(publisher) == 26:
+                for i in [17, 18]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            elif int(publisher) == 27:
+                for i in [17,18,31]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+        elif list(subjects.keys())[choice_sub] == '初中物理':
+            if int(publisher) in [1,2]:
+                for i in [11,12,16]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            elif int(publisher) in [6,7,9,16,17]:
+                for i in range(11,15): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            elif int(publisher) in [8,12]:
+                for i in [15,16]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            elif int(publisher) == 11:
+                for i in range(9,14): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+        elif list(subjects.keys())[choice_sub] == '初中化学':
+            if int(publisher) in [1,9]:
+                for i in [13,14,19]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            elif int(publisher) == 7:
+                for i in [15,16,19]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+            elif int(publisher) == 11:
+                for i in [9,11,12,13,19]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
         while True:
             try:
                 choice = int(input('\n请输入年级的序号:'))
-                semester = int(semesters[list(semesters.keys())[choice - 1]])
+                semester = int(semesters[list(semesters.keys())[choice-1]])
+                # print(list(subjects.keys())[choice_sub])
                 if list(subjects.keys())[choice_sub] == '小学数学' and choice in range(1, 9):
                     break
-                elif list(subjects.keys())[choice_sub] == '初中数学' and choice in range(9, 17):
+                elif list(subjects.keys())[choice_sub] in ['初中数学','初中化学','初中物理'] and choice in range(9, 20):
                     break
-                elif list(subjects.keys())[choice_sub] == '高中数学' and choice in range(17, 26):
+                elif list(subjects.keys())[choice_sub] == '高中数学' and choice in range(20, 37):
                     break
                 else:
                     continue
             except Exception or ValueError:
                 continue
         print('正在爬取')
+        # print(semester)
         if semester <= 12:
             stage = '1'
         elif 18 >= semester > 12:
+            stage = '2'
+        elif semester == 33 or semester == 34:
             stage = '2'
         else:
             stage = '3'
@@ -251,7 +298,7 @@ if __name__ == '__main__':
     m3u8_urls = [i for j in m3u8_urls for i in j]
     video_names = [i for j in video_names for i in j]
     for i in range(0,len(m3u8_urls)):
-        print(str(i+1)+'.'+video_names[i],m3u8_urls[i])
+        print(str(i+1)+'.'+video_names[i])
     while True:
         try:
             choose = input('请输入要下载的序号(用英文逗号分隔)(全部直接回车):')
