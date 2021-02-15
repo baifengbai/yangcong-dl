@@ -223,7 +223,7 @@ class yc:
             for i in [9,10,11,12,13,14,17,18]: print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
         elif list(subjects.keys())[choice_sub] == '高中数学':
             if int(publisher) in [1,2,15,18,19,20]:
-                for i in range(17, 27): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
+                for i in range(20, 29): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
             elif int(publisher) == 4:
                 for i in range(27, 31): print(str(i) + '.' + list(semesters.keys())[i - 1] + '  ', end='')
             elif int(publisher) == 21:
@@ -271,13 +271,13 @@ class yc:
             stage = '1'
         elif 18 >= semester > 12:
             stage = '2'
-        elif semester == 33 or semester == 34:
+        elif semester in range(31,45):
             stage = '2'
         else:
             stage = '3'
         url = 'https://school-api.yangcong345.com/course/chapters-with-section/publisher/%s/semester/%s/subject/%s/stage/%s' % (
         publisher, semester, subject, stage)
-        print(url)
+        # print(url)
         download_dir = publisher+str(semester)+subject
         return url,download_dir
 
